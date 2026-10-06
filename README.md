@@ -12,6 +12,13 @@ fetching and Keychain session persistence built in.
 - **Swift 5.9+**
 - Zero external dependencies.
 
+### Info.plist
+
+| Key                            | Required when                                                                                                                          |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `NSMicrophoneUsageDescription` | Voice conversation mode is enabled. Without it iOS terminates the app when the chat asks for the microphone.                           |
+| `NSCameraUsageDescription`     | File attachments are enabled for your chat instance. Without it iOS terminates the app when the user takes a photo or video to attach. |
+
 ## Installation
 
 The SDK is distributed as a **Swift Package**. In Xcode:
@@ -24,7 +31,7 @@ Or reference it in your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chatbotizeteam/chat-ios-sdk", from: "0.0.1"),
+    .package(url: "https://github.com/chatbotizeteam/chat-ios-sdk", from: "1.0.0"),
 ]
 ```
 
@@ -288,7 +295,7 @@ Controls the chat's color theme.
 
 | Value     | Description                                       |
 | --------- | ------------------------------------------------- |
-| `.system` | Follow the device's light/dark setting.            |
+| `.system` | Follow the device's light/dark setting (default). |
 | `.light`  | Force light theme.                                |
 | `.dark`   | Force dark theme.                                 |
 
@@ -485,3 +492,7 @@ If the token value changes, call `registerPushToken` again with the new token.
 - The token is automatically cleared when the chat ends or the session expires.
 - The host app is responsible for the Firebase and APNs setup. The SDK only
   handles token registration with the Zowie backend.
+
+## License
+
+MIT
