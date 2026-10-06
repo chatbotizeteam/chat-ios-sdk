@@ -492,3 +492,7 @@ If the token value changes, call `registerPushToken` again with the new token.
 - The token is automatically cleared when the chat ends or the session expires.
 - The host app is responsible for the Firebase and APNs setup. The SDK only
   handles token registration with the Zowie backend.
+
+## License
+
+MIT
