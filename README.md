@@ -31,11 +31,13 @@ Or reference it in your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chatbotizeteam/chat-ios-sdk", from: "1.0.1"),
+    .package(url: "https://github.com/chatbotizeteam/chat-ios-sdk", from: "1.0.2"),
 ]
 ```
 
 Then add `ZowieChat` to your target's dependencies.
+
+See [CHANGELOG.md](CHANGELOG.md) for what changed in each version.
 
 ## Quick start
 
@@ -102,12 +104,12 @@ let config = ZowieChatConfig(
 
 | Field                     | Type               | Default       | Description                                                       |
 | ------------------------- | ------------------ | ------------- | ----------------------------------------------------------------- |
-| `metadata`                | `Metadata?`        | `nil`         | User attributes. `metadata.locale` also selects the bot's region. |
+| `metadata`                | `Metadata?`        | `nil`         | User attributes. `metadata.locale` also selects the AI agent's region. |
 | `externalAccessToken`     | `String?`          | `nil`         | JWT for authenticated sessions; anonymous when omitted.           |
-| `context`                 | `String?`          | `nil`         | Custom context string passed to the bot.                          |
+| `context`                 | `String?`          | `nil`         | Custom context string passed to the AI agent.                     |
 | `resetSession`            | `Bool`             | `false`       | Clear any persisted session on init.                              |
 | `initialConversationMode` | `ConversationMode` | `.text`       | Mode the chat opens in (`.text` or `.voice`).                     |
-| `versionType`             | `VersionType`      | `.production` | Bot version to run: `.production` or `.staging`.                  |
+| `versionType`             | `VersionType`      | `.production` | AI agent version to run: `.production` or `.staging`.             |
 | `referral`                | `String`           | `"start"`     | Referral used for auto-start.                                     |
 | `initialUserMessage`      | `String?`          | `nil`         | Initial user message sent with auto-start.                        |
 
@@ -168,7 +170,7 @@ event fires.
 | Event             | Payload                                 | Fires when...                                                                                                                                                                                                |
 | ----------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `loaded`          | --                                      | The chat finished loading.                                                                                                                                                                                   |
-| `chatStarted`     | `conversationId: String`                | A conversation started.                                                                                                                                                                                      |
+| `chatStarted`     | `conversationId: String`                | A conversation started or was resumed.                                                                                                                                                                                      |
 | `chatEnded`       | --                                      | The conversation ended.                                                                                                                                                                                      |
 | `messageSent`     | `message: String`                       | The user sent a message.                                                                                                                                                                                     |
 | `messageReceived` | `payload: String` (raw JSON)            | A message was received.                                                                                                                                                                                      |
@@ -285,7 +287,7 @@ User attributes. All fields are optional.
 | `name`        | `String?`           | Name, sent next to `firstName` and `lastName`.       |
 | `email`       | `String?`           | User's email address.                                |
 | `phoneNumber` | `String?`           | User's phone number.                                 |
-| `locale`      | `String?`           | Locale, e.g. `en-US`. Also selects the bot's region. |
+| `locale`      | `String?`           | Locale, e.g. `en-US`. Also selects the AI agent's region. |
 | `timezone`    | `String?`           | IANA timezone, e.g. `Europe/Warsaw`.                 |
 | `extraParams` | `[String: String]?` | Arbitrary custom attributes.                         |
 
@@ -293,11 +295,11 @@ User attributes. All fields are optional.
 
 Controls the chat's color theme.
 
-| Value     | Description                                       |
-| --------- | ------------------------------------------------- |
-| `.system` | Follow the device's light/dark setting (default). |
-| `.light`  | Force light theme.                                |
-| `.dark`   | Force dark theme.                                 |
+| Value     | Description                             |
+| --------- | --------------------------------------- |
+| `.system` | Follow the device's light/dark setting. |
+| `.light`  | Force light theme.                      |
+| `.dark`   | Force dark theme.                       |
 
 ### `ConversationMode`
 
@@ -310,12 +312,12 @@ The mode a conversation opens in.
 
 ### `VersionType`
 
-Whether the chat runs against the production or staging bot.
+Whether the chat runs against the published or staging version of your AI agent.
 
-| Value         | Description                             |
-| ------------- | --------------------------------------- |
-| `.production` | The published bot (default).            |
-| `.staging`    | The current staging version of the bot. |
+| Value         | Description                                  |
+| ------------- | -------------------------------------------- |
+| `.production` | The published version (default).             |
+| `.staging`    | The current staging version of the AI agent. |
 
 ### `FontColor`
 
@@ -388,7 +390,7 @@ between tasks.
 | `showCsat`            | Show the CSAT survey. Pass `onCompleted` to be called when done.   |
 | `startChat`           | Start a new conversation when none is active (no-op otherwise).    |
 | `endChat`             | Clear the stored session and current conversation (use on logout). |
-| `registerPushToken`   | Register a device push token for push notifications.               |
+| `registerPushToken`   | Register an FCM registration token for push notifications.         |
 | `deregisterPushToken` | Deregister the current device token; stops push notifications.     |
 | `conversationId`      | The active conversation's ID, or `nil` when none is open.          |
 

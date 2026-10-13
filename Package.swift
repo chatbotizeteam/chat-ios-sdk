@@ -11,8 +11,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "ZowieChat",
-            url: "https://github.com/chatbotizeteam/chat-ios-sdk/releases/download/1.0.1/ZowieChat.xcframework.zip",
-            checksum: "f006543ff769a7de832c0d678856ef2dae9061f743a761d17249e35fef6731c6"
+            url: "https://github.com/chatbotizeteam/chat-ios-sdk/releases/download/1.0.2/ZowieChat.xcframework.zip",
+            checksum: "1feb13ebe1a88b1dd68b0a07836508e5a3a56c1788c33c74732c382776faea5e"
         ),
     ]
 )
