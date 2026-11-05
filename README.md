@@ -21,7 +21,3 @@ changelog.
 Versions 1.x stay available from this repository, so existing builds
 keep working. Their documentation is at
 [tag 1.0.2](https://github.com/chatbotizeteam/chat-ios-sdk/blob/1.0.2/README.md).
-
-## License
-
-MIT
